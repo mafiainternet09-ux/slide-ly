@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Eye, Sparkles } from 'lucide-react';
+import roentgenHandImg from '../../assets/images/history_roentgen_hand_1795609044288.jpg';
 import { HISTORY_MILESTONES } from '../../data/slidesData';
 import { ResilientImage } from '../ResilientImage';
 
@@ -133,7 +134,7 @@ export function SlideHistory() {
 
           <div className="relative overflow-hidden rounded-lg border border-slate-800 bg-black h-[320px] lg:h-[395px]">
             <ResilientImage
-              src="/src/assets/images/history_roentgen_hand_1795609044288.jpg"
+              src={roentgenHandImg}
               alt="Ảnh chụp X-quang lịch sử năm 1895 bàn tay đeo nhẫn của vợ Röntgen"
               fallbackTitle="Bản phim X-quang bàn tay đeo nhẫn năm 1895"
               className={`h-full w-full object-contain transition-all duration-300 ${

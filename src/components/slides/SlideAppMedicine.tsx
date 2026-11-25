@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ctScannerImg from '../../assets/images/app_medical_ct_scanner_1795609045437.jpg';
 import { ResilientImage } from '../ResilientImage';
 
 type MedMode = 'xray' | 'ct' | 'therapy';
@@ -193,7 +194,7 @@ export function SlideAppMedicine() {
               </div>
               <div className="relative flex-1 overflow-hidden rounded-lg border border-slate-800 bg-black min-h-[340px]">
                 <ResilientImage
-                  src="/src/assets/images/app_medical_ct_scanner_1795609045437.jpg"
+                  src={ctScannerImg}
                   alt="Hình ảnh chụp cắt lớp vi tính CT lồng ngực và xương sườn bằng tia X"
                   fallbackTitle="Chụp cắt lớp vi tính CT Scanner"
                   className={`h-full w-full object-cover transition-all duration-300 ${

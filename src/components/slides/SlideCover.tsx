@@ -1,4 +1,5 @@
 import { ArrowRight, Layers } from 'lucide-react';
+import heroXrayImg from '../../assets/images/hero_xray_spectrum_1795609044648.jpg';
 import { ResilientImage } from '../ResilientImage';
 
 interface SlideCoverProps {
@@ -75,7 +76,7 @@ export function SlideCover({ onStart, onOpenOverview }: SlideCoverProps) {
 
         <div className="animate-stagger-2 relative overflow-hidden rounded-xl border border-slate-800 bg-[#0B101A] lg:col-span-6 min-h-[300px] lg:min-h-[420px]">
           <ResilientImage
-            src="/src/assets/images/hero_xray_spectrum_1795609044648.jpg"
+            src={heroXrayImg}
             alt="Ống phát tia X chân không phát chùm bức xạ màu xanh lam trong phòng thí nghiệm"
             fallbackTitle="Ống phát tia X chân không"
             className="h-full w-full object-cover"

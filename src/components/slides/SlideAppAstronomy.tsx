@@ -1,3 +1,4 @@
+import spaceTelescopeImg from '../../assets/images/app_space_xray_telescope_1795609046672.jpg';
 import { ResilientImage } from '../ResilientImage';
 
 export function SlideAppAstronomy() {
@@ -109,7 +110,7 @@ export function SlideAppAstronomy() {
 
           <div className="relative flex-1 overflow-hidden rounded-lg border border-slate-800 bg-black min-h-[340px]">
             <ResilientImage
-              src="/src/assets/images/app_space_xray_telescope_1795609046672.jpg"
+              src={spaceTelescopeImg}
               alt="Kính viễn vọng tia X ngoài không gian quan sát đĩa bồi tụ phát tia X quanh lỗ đen"
               fallbackTitle="Kính viễn vọng tia X ngoài không gian"
               className="h-full w-full object-cover"
