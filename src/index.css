@@ -1,0 +1,283 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Outfit", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-color: #070B12;
+    color: #F1F5F9;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.radiograph-grid {
+  background-image:
+    linear-gradient(to right, rgba(56, 189, 248, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.045) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+.radiograph-grid-fine {
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+@keyframes slideEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.992);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes cardStagger {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scanSweepY {
+  0% {
+    transform: translateY(-10%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  85% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(110%);
+    opacity: 0;
+  }
+}
+
+@keyframes scanSweepX {
+  0% {
+    transform: translateX(-10%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(110%);
+    opacity: 0;
+  }
+}
+
+@keyframes dashFlow {
+  from {
+    stroke-dashoffset: 48;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes slowSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes conveyorLoop {
+  0% {
+    transform: translateX(-120px);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(520px);
+    opacity: 0;
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@property --frame-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes frameRotate {
+  to {
+    --frame-angle: 360deg;
+  }
+}
+
+/* Animated luminous scanner borders for all text frames & content panels */
+main section :is(div, li, button).rounded-xl.border,
+main section :is(div, li).rounded-lg.border,
+[role="dialog"] button.rounded-xl.border {
+  position: relative;
+  --beam-mid: rgba(34, 211, 238, 0.72);
+  --beam-peak: rgba(186, 230, 253, 0.92);
+  --beam-tail: rgba(56, 189, 248, 0.2);
+}
+
+main section :is(div, li, button).rounded-xl.border::before,
+main section :is(div, li).rounded-lg.border::before,
+[role="dialog"] button.rounded-xl.border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--frame-angle),
+    transparent 0deg,
+    transparent 245deg,
+    var(--beam-tail) 280deg,
+    var(--beam-mid) 318deg,
+    var(--beam-peak) 334deg,
+    var(--beam-tail) 348deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.78;
+  transition: opacity 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  animation: frameRotate 6.8s linear infinite;
+}
+
+main section .overflow-hidden:is(.rounded-xl, .rounded-lg).border::before {
+  inset: 0;
+}
+
+main section :is(div, li).rounded-lg.border::before {
+  opacity: 0.48;
+  animation: frameRotate 9.5s linear infinite reverse;
+}
+
+main section :is(div, li, button):is(.rounded-xl, .rounded-lg).border:nth-child(even)::before {
+  animation-delay: -3.4s;
+}
+
+main section :is(div, li, button):is(.rounded-xl, .rounded-lg).border:nth-child(3n)::before {
+  animation-delay: -1.7s;
+}
+
+main section :is(div, li, button):is(.rounded-xl, .rounded-lg).border:hover::before {
+  opacity: 1;
+}
+
+/* Match semantic alert/feedback border colors cleanly */
+main section :is([class*="border-rose-"])::before {
+  --beam-mid: rgba(251, 113, 133, 0.78);
+  --beam-peak: rgba(254, 205, 211, 0.92);
+  --beam-tail: rgba(244, 63, 94, 0.22);
+}
+
+main section :is([class*="border-amber-"])::before {
+  --beam-mid: rgba(251, 191, 36, 0.78);
+  --beam-peak: rgba(254, 243, 199, 0.92);
+  --beam-tail: rgba(245, 158, 11, 0.22);
+}
+
+main section :is([class*="border-emerald-"])::before {
+  --beam-mid: rgba(52, 211, 153, 0.8);
+  --beam-peak: rgba(167, 243, 208, 0.92);
+  --beam-tail: rgba(16, 185, 129, 0.22);
+}
+
+.animate-slide-enter {
+  animation: slideEnter 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-stagger-1 {
+  animation: cardStagger 320ms cubic-bezier(0.16, 1, 0.3, 1) 40ms both;
+}
+
+.animate-stagger-2 {
+  animation: cardStagger 360ms cubic-bezier(0.16, 1, 0.3, 1) 110ms both;
+}
+
+.animate-stagger-3 {
+  animation: cardStagger 400ms cubic-bezier(0.16, 1, 0.3, 1) 180ms both;
+}
+
+.animate-scan-y {
+  animation: scanSweepY 3.6s ease-in-out infinite;
+}
+
+.animate-scan-x {
+  animation: scanSweepX 3.4s ease-in-out infinite;
+}
+
+.animate-dash-flow {
+  animation: dashFlow 1.2s linear infinite;
+}
+
+.animate-slow-spin {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: slowSpin 14s linear infinite;
+}
+
+.animate-conveyor {
+  animation: conveyorLoop 5.2s linear infinite;
+}
+
+.animate-float-slow {
+  animation: floatSlow 4.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

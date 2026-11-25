@@ -1,0 +1,6 @@
+{
+  "name": "Tia X — Thuyết trình Vật lí Hiện đại",
+  "description": "Trang web thuyết trình tương tác chuyên sâu về Tia X: lịch sử phát minh Röntgen, cấu tạo ống phát, cơ chế tạo tia X, điều khiển, tính chất, sự suy giảm, ứng dụng và an toàn bức xạ.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
